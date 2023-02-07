@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="./css/styles.cs">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Neucha&display=swap" rel="stylesheet">
+    <title>Клиника для животных</title>
+   
+</head>
+<body style="background-color: bisque !important;">
+
+    <div class="container">
+        <h1>Пациенты клиники</h1>
+        <hr>
+        <form method="post">
+            <div class="input-group mb-2">
+                <select class="custom-select" name="pet_type" style="background-color: #fff3cd !important;">
+                    <option value="Все">Все</option>
+                    <option value="Грызуны">Грызуны</option>
+                    <option value="Пернатые">Пернатые</option>
+                    <option value="Кошки">Кошки</option>
+                    <option value="Собаки">Собаки</option>
+                    <option value="Экзотические животные">Экзотические животные</option>
+                </select>
+
+                <div class="input-group-append" style="padding-left: 5pc;">
+                    <button class="btn btn-outline-dark" type="submit" formaction="/filter" >Найти</button>
+                    <button class="btn btn-dark" type="submit" formaction="/new">Добавить пациента</button>
+                </div>                
+            </div>
+        </form>
+
+        {{#if tableVisible}}
+
+            <table class="table table-hover  table-warning">
+                <thead class="thead-dark" >
+                	<tr ><th>Вид животного</th><th>Кличка</th><th>Лечащий врач</th><th>Диагноз</th><th>Дата приема</th></tr>
+                </thead>
+                <tbody>
+                     {{#each patients}}                 
+                             <tr data-href="/details?id={{this.id}}">
+                                <td>{{this.pet_type}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.doctor_name}}</td>
+                                <td>{{this.diagnosis}}</td>
+                                <td>{{printDate this.date}}</td>
+                            </tr> 
+                    {{/each}}
+                </tbody>
+              
+            </table>
+
+        {{else}}
+
+            <h2>Пока нет ни одного пациента!</h2>
+
+        {{/if}}
+
+    </div>
+
+<script type="text/javascript">
+   jQuery( function($) {
+    $('tbody tr[data-href]').addClass('clickable').click( function() {
+    window.location = $(this).attr('data-href');
+});
+});
+</script>
+  
+    
+</body>
+</html>
