@@ -68,24 +68,25 @@
             <div class="col bg-light rounded ml-3 pt-2 pb-2" style="width : 50%; background-color: #fff3cd !important;"> <p>Рекомендации врача:</p><pre>{{patient.notes}}</pre></div>
 		</div>
 
-		{{!-- <div class="form-group mt-2">
-	 		<form method="post" action="/uploadFile" enctype="multipart/form-data">
+<hr>
+		<div class="form-group mt-2">
+	 		<form method="post" action="/upload" enctype="multipart/form-data">
 	 			<div class="input-group">
-	 				<button type="submit" class="btn btn-secondary mr-1">Загрузить файл</button>					
+	 									
 					<div class="custom-file">
-					    <input type="file" class="custom-file-input" name="myFile" required>
-					    <label class="custom-file-label" for="customFile">Выберите файл</label>
+					    <input type="file"  name="File" required>
 					</div>
-					<input name="id" value="{{note.id}}" hidden>
+                    <button type="submit" class="btn rounded btn-warning mr-1">Загрузить</button>
+					<input name="id" value="{{patient.id}}" hidden>
 				</div>
 			</form>
-		</div> --}}
+		</div>
 
 	 	{{#if showTable}}
 
-			<table class="table table-hover table-bordered">
+			<table class="table table-hover table-borderless">
 				<thead class="thead-light">
-	            	<tr><th>Название файла</th><th>Действия</th></tr>
+	            	<tr><th>Название файла</th></tr>
 	            </thead>
 	            <tbody>
 
@@ -94,13 +95,11 @@
 	                <tr>
 	                    <td class="align-middle">{{this}}</td>
 	                    <td>  
-	                    	<div class="d-flex justify-content-center"> 
+	                    	<div class="d-flex "> 
 		                    	<form method="post">
-		                    		<input name="fileName" value="{{../note.id}}/{{this}}" hidden>
-		                    		<div class="btn-group btn-group-md">
-			                    		<button type="submit" class="btn btn-danger" formaction="deleteFile">Удалить</button>
-			                    		<button type="submit" class="btn btn-info" formaction="downloadFile">Скачать</button>
-		                    		</div>
+		                    		<input name="fileName" value="{{../patient.id}}/{{this}}" hidden>
+		                    		<button type="submit" class="btn btn-warning" formaction="downloadFile">Скачать</button>
+			                    	<button type="submit" class="btn btn-danger" formaction="deleteFile">Удалить</button>                  		
 		                		</form>
 	                		</div>
 	                	</td>

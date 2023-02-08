@@ -155,7 +155,7 @@ module.exports.details = function(req, res) {
 		files = fs.readdirSync('./files/' + req.query.id);
 	}
 	 
-	console.log(files);
+	//console.log(files);
 
 	if (patient != null) {
 		res.render("patient.hbs", 
@@ -212,11 +212,11 @@ module.exports.filter = function(req, res) {
 	   if (status != 'Другое') {
 		filtredPatients = patients.filter(patient => patient.pet_type == status );
 	   } else {
-		filtredPatients = patients.filter(patient => status);
+		filtredPatients = DiffAnim(patients);
 	   }
    }
 
-   console.log(status);
+ //  console.log(status);
   // console.log(filtredPatients);
 
    res.render("Main_page.hbs", 
@@ -224,4 +224,17 @@ module.exports.filter = function(req, res) {
 	   tableVisible: filtredPatients.length > 0,
 	   patients: filtredPatients
    });
+}
+
+function DiffAnim (patients) {
+	let diffAnim = [];
+	for(var i = 0; i < patients.length; i++) {
+        if((patients[i].pet_type != "Кот") && (patients[i].pet_type != "Собака") 
+		&& (patients[i].pet_type != "Грызун") && (patients[i].pet_type != "Пернатое")
+		 && (patients[i].pet_type != "Кошка")) {
+            diffAnim.push(patients[i]);
+        }
+
+    }
+	return diffAnim;
 }
