@@ -9,7 +9,7 @@ const date_helper = require("./routes/date_helper.js")
 
 const app = express()
 
-// создаем парсер для данных application/x-www-form-urlencoded
+
 const urlencodedParser = express.urlencoded({extended: false});
 
 
@@ -21,10 +21,12 @@ app.set("view engine", "hbs")
 hbs.registerHelper("printDate", date_helper.formatDate);
 
 
-app.post("/new", urlencodedParser, patients_code.new);
+
+app.post("/new",  urlencodedParser, patients_code.new);
+app.post("/add", urlencodedParser, patients_code.add);
 
 
-
+app.get("/details", patients_code.details);
 app.get("/", patients_code.main);
 
 

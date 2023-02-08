@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+
+
+    <title>Карточка пациента</title>
+</head>
+<body  style="background-color: bisque !important;">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"><a href="/" class="navbar-brand" ><h3>К началу</h3></a></nav>
+    <div class="container" >
+    <div >
+        <h2>Карточка пациента</h2> <hr>
+    </div>
+    <div  >
+    <form method="get" action="/delete"> 
+				<input name="id" value="{{note.id}}" hidden>				
+					<button class="btn btn-warning" type="submit" formaction="/edit">Изменить</button> 
+                    <button class="btn btn-danger" type="submit">Удалить</button> 
+			</form>
+    </div><hr>
+			
+	
+
+<div class="container-fluid">
+		<h1>{{patient.pet_type}} {{patient.name}}</h1>
+
+		<div class="row">
+			
+			<div class="col  rounded ml-1 mr-3  align-items-center"  style="width : 25%">
+					
+			
+					<input name="id" value="{{patient.id}}" hidden>
+
+					{{#if showDate}}
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+							<span class="input-group-text" style="background-color: #e0bd49 !important;">Дата приема:</span>
+							</div>
+                            	
+							<input  type="text" class="form-control" style="background-color: #fff3cd !important;" value="{{printDate patient.date}}" readonly>
+						
+                        </div>
+					{{/if}}
+                    
+                    <div class="input-group mb-3">
+							<div class="input-group-prepend">
+							<span class="input-group-text" style="background-color: #e0bd49 !important;">Лечащий врач:</span>
+							</div>
+							 <input  type="text" class="form-control" style="background-color: #fff3cd !important;" value="{{patient.doctor_name}}" readonly>
+						
+                    </div>
+               
+                    <div class="input-group mb-3">
+							<div class="input-group-prepend">
+							<span class="input-group-text" style="background-color: #e0bd49 !important;">Диагноз:</span>
+							</div>
+							 <input  type="text" class="form-control" style="background-color: #fff3cd !important;" value="{{patient.diagnosis}}" readonly>
+						
+                    </div>
+				
+
+			</div>
+            <div class="col bg-light rounded ml-3 pt-2 pb-2" style="width : 50%; background-color: #fff3cd !important;"> <p>Рекомендации врача:</p><pre>{{patient.notes}}</pre></div>
+		</div>
+
+		{{!-- <div class="form-group mt-2">
+	 		<form method="post" action="/uploadFile" enctype="multipart/form-data">
+	 			<div class="input-group">
+	 				<button type="submit" class="btn btn-secondary mr-1">Загрузить файл</button>					
+					<div class="custom-file">
+					    <input type="file" class="custom-file-input" name="myFile" required>
+					    <label class="custom-file-label" for="customFile">Выберите файл</label>
+					</div>
+					<input name="id" value="{{note.id}}" hidden>
+				</div>
+			</form>
+		</div> --}}
+
+	 	{{#if showTable}}
+
+			<table class="table table-hover table-bordered">
+				<thead class="thead-light">
+	            	<tr><th>Название файла</th><th>Действия</th></tr>
+	            </thead>
+	            <tbody>
+
+	            	{{#each files}}
+	          	
+	                <tr>
+	                    <td class="align-middle">{{this}}</td>
+	                    <td>  
+	                    	<div class="d-flex justify-content-center"> 
+		                    	<form method="post">
+		                    		<input name="fileName" value="{{../note.id}}/{{this}}" hidden>
+		                    		<div class="btn-group btn-group-md">
+			                    		<button type="submit" class="btn btn-danger" formaction="deleteFile">Удалить</button>
+			                    		<button type="submit" class="btn btn-info" formaction="downloadFile">Скачать</button>
+		                    		</div>
+		                		</form>
+	                		</div>
+	                	</td>
+	                </tr>
+
+	                {{/each}}
+
+	            </tbody>
+			</table> 
+
+		{{/if}}
+	
+		
+
+	</div>
+
+    </div>
+</body>
+</html>

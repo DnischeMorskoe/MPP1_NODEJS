@@ -18,71 +18,15 @@
 #i1 {
     display: none;
 }
+
+input:focus,textarea:focus {
+    background-color: #e0d09a !important;
+}
+
+input, textarea{
+     background-color: #fff3cd !important;
+}
 </style>
-
-
-
-    <title>Добавить пациента</title>
-</head>
-<body style="background-color: bisque !important;" >
-    <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"><a href="/" class="navbar-brand" ><h3>На главную</h3></a></nav>
-    <div style=" width: 50% !important;  margin: auto; justify-content: space-between; " >
-		<form method="post">
-
-			<input hidden name="id" value="{{patient.id}}">
-            <div style="width: 100%;" >
-			<div class="form-group">
-	            <label for="title">Вид животного:</label>
-                 <select class="custom-select" id="type_selector" name="pet_type" style="background-color: #fff3cd !important;" >
-                    
-                    <option value="{{patient.pet_type}}">Грызун</option>
-                    <option value="{{patient.pet_type}}">Пернатое</option>
-                    <option value="{{patient.pet_type}}">Кошка</option>
-                    <option value="{{patient.pet_type}}">Собака</option>
-                    <option value="Другое">Другое</option>
-                </select>
-                 <input class="form-control" id="i1" value="{{patient.name}}"  required> 
-	             
-	        </div>
-
-            <div class="form-group">
-	            <label for="title">Кличка:</label>
-	            <input class="form-control" name="name" value="{{patient.name}}" required>
-	        </div>
-
-            <div class="form-group">
-	            <label for="title">Лечащий врач:</label>
-	            <input class="form-control" name="doctor_name" value="{{patient.doctor_name}}" required>
-	        </div>
-           
-
-
-        
-            <div class="form-group">
-	            <label for="title">Диагноз:</label>
-	            <input class="form-control" name="diagnosis" value="{{patient.diagnosis}}" required>
-	        </div>
-
-
-	        <div class="form-group">
-	        	<label for="content">Рекомендации врача:</label>
-	        	<textarea class="form-control" name="notes" >{{patient.notes}}</textarea>
-	        </div>
-
-	        <div class="form-group">
-	            <label for="date">Дата приема</label><br>
-	            <input type="date" name="date" value="{{note.date}}">
-	        </div>
-            </div>
-
-    <br>
-	        <div class="panel-body">
-	            <button class="btn btn-warning" type="submit" formaction="/save">Сохранить</button>
-	        </div>
-
-		</form>
-	</div>
-    
 
 <script type="text/javascript">
    $(function (){
@@ -97,6 +41,71 @@
 });
 
 </script>
+
+    <title>Добавить пациента</title>
+</head>
+<body style="background-color: bisque !important;" >
+    <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"><a href="/" class="navbar-brand" ><h3>К началу</h3></a></nav>
+    <div style=" width: 50% !important;  margin: auto; justify-content: space-between; " >
+		<form method="post">
+
+			<input hidden name="id" value="{{patient.id}}">
+            <div style="width: 100%;" >
+			<div class="form-group">
+	            <label for="title">Вид животного:</label>
+                 <select class="custom-select" id="type_selector" name="pet_typee" style="background-color: #fff3cd !important;" >
+                    
+                    <option value="Грызун">Грызун</option>
+                    <option value="Пернатое">Пернатое</option>
+                    <option value="Кот">Кот</option>
+                    <option value="Собака">Собака</option>
+                    <option value="Другое">Другое</option>
+
+                </select>
+                 <input class="form-control"  id="i1" name="diff" value="{{patient.pet_type}}"  > 
+	             
+	        </div>
+
+            <div class="form-group">
+	            <label for="title">Кличка:</label>
+	            <input class="form-control"  name="name" value="{{patient.name}}" required>
+	        </div>
+
+            <div class="form-group">
+	            <label for="title">Лечащий врач:</label>
+	            <input class="form-control" name="doctor_name" value="{{patient.doctor_name}}" required>
+	        </div>
+           
+
+
+        
+            <div class="form-group">
+	            <label for="title">Диагноз:</label>
+	            <input class="form-control"  name="diagnosis" value="{{patient.diagnosis}}" required>
+	        </div>
+
+
+	        <div class="form-group">
+	        	<label for="content">Рекомендации врача:</label>
+	        	<textarea class="form-control"  name="notes" >{{patient.notes}}</textarea>
+	        </div>
+
+	        <div class="form-group">
+	            <label for="date">Дата приема</label><br>
+	            <input type="date" name="date" value="{{patient.date}}">
+	        </div>
+            
+
+    
+	        <div class="panel-body">
+	           <button class="btn btn-warning" type="submit" formaction="/add">Добавить</button> 
+	        </div>
+            </div>
+		</form>
+	</div>
+    
+
+
 
 </body>
 </html>
