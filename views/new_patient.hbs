@@ -49,7 +49,7 @@ input, textarea{
     <div style=" width: 50% !important;  margin: auto; justify-content: space-between; " >
 		<form method="post">
 
-			<input hidden name="id" value="{{patient.id}}">
+			<input hidden name="id" value="{{patient.id}}"> <br>
             <div style="width: 100%;" >
 			<div class="form-group">
 	            <label for="title">Вид животного:</label>
@@ -65,7 +65,7 @@ input, textarea{
                  <input class="form-control"  id="i1" name="diff" value="{{patient.pet_type}}"  > 
 	             
 	        </div>
-
+<br>
             <div class="form-group">
 	            <label for="title">Кличка:</label>
 	            <input class="form-control"  name="name" value="{{patient.name}}" required>
@@ -84,11 +84,12 @@ input, textarea{
 	            <input class="form-control"  name="diagnosis" value="{{patient.diagnosis}}" required>
 	        </div>
 
-
+            <br>
 	        <div class="form-group">
 	        	<label for="content">Рекомендации врача:</label>
 	        	<textarea class="form-control"  name="notes" >{{patient.notes}}</textarea>
 	        </div>
+            <br>
 
 	        <div class="form-group">
 	            <label for="date">Дата приема</label><br>
@@ -96,7 +97,7 @@ input, textarea{
 	        </div>
             
 
-    
+    <br>
 	        <div class="panel-body">
 	           <button class="btn btn-warning" type="submit" formaction="/add">Добавить</button> 
 	        </div>
