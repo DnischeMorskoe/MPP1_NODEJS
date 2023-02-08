@@ -16,10 +16,11 @@
     <title>Клиника для животных</title>
    
 </head>
-<body style="background-color: bisque !important;">
 
+<body style="background-color: bisque !important;">
+ <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"> <h3>Пациенты клиники</h3></nav>
     <div class="container">
-        <h1>Пациенты клиники</h1>
+          
         <hr>
         <form method="post">
             <div class="input-group mb-2">
@@ -34,7 +35,7 @@
 
                 <div class="input-group-append" style="padding-left: 5pc;">
                     <button class="btn btn-outline-dark" type="submit" formaction="/filter" >Найти</button>
-                    <button class="btn btn-dark" type="submit" formaction="/new">Добавить пациента</button>
+                    <button class="btn btn-warning" type="submit" formaction="/new">Добавить пациента</button>
                 </div>                
             </div>
         </form>

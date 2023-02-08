@@ -34,3 +34,21 @@ module.exports.main = function(req, res) {
 		patients: patients
 	});
 }
+
+
+module.exports.new = function(req, res) {
+	let patient = {
+		id:"",
+   		pet_type:"", 
+   	 	name:"",
+    	doctor_name:"",
+    	diagnosis:"",
+    	notes: "",
+    	date:""
+	};
+
+	res.render("new_patient.hbs", 
+	{
+		patient: patient
+	});
+}
