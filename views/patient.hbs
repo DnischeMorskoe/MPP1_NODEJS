@@ -12,16 +12,17 @@
     <title>Карточка пациента</title>
 </head>
 <body  style="background-color: bisque !important;">
-    <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"><a href="/" class="navbar-brand" ><h3>К началу</h3></a></nav>
+    <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"><div class="container"><a href="/" class="navbar-brand" ><h3>К началу</h3></a></div></nav>
     <div class="container" >
     <div >
         <h2>Карточка пациента</h2> <hr>
     </div>
     <div  >
+        <input name="id" value="{{patient.id}}" hidden>
     <form method="get" action="/delete"> 
-				<input name="id" value="{{note.id}}" hidden>				
+				<input name="id" value="{{patient.id}}" hidden>				
 					<button class="btn btn-warning" type="submit" formaction="/edit">Изменить</button> 
-                    <button class="btn btn-danger" type="submit">Удалить</button> 
+                    <button class="btn btn-danger" type="submit" >Удалить</button> 
 			</form>
     </div><hr>
 			
@@ -35,8 +36,6 @@
 			<div class="col  rounded ml-1 mr-3  align-items-center"  style="width : 25%">
 					
 			
-					<input name="id" value="{{patient.id}}" hidden>
-
 					{{#if showDate}}
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">

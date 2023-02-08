@@ -24,8 +24,11 @@ hbs.registerHelper("printDate", date_helper.formatDate);
 
 app.post("/new",  urlencodedParser, patients_code.new);
 app.post("/add", urlencodedParser, patients_code.add);
+ app.post("/filter", urlencodedParser, patients_code.filter);
 
 
+app.get("/delete", patients_code.delete);
+app.get("/edit", patients_code.edit);
 app.get("/details", patients_code.details);
 app.get("/", patients_code.main);
 

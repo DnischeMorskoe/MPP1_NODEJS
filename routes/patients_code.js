@@ -77,7 +77,7 @@ module.exports.add = function(req, res) {
 	if (patient.pet_type == "Другое") {
 		patient.pet_type = req.body.diff;
 	}
-	
+
 	if (patient.id == '0') {
 		 
 	    let maxId = Math.max.apply(Math, patients.map(function(o) {
@@ -89,6 +89,7 @@ module.exports.add = function(req, res) {
 	    }
 
 	    patient.id = maxId + 1;
+		
 	    patients.push(patient);
 
 	    if (!fs.existsSync('./files/' + patient.id)) {
@@ -133,6 +134,18 @@ function GetPatient(patientId) {
 	return patient;
 }
 
+module.exports.edit = function(req, res) {
+	let patient = GetPatient(req.query.id);
+
+	if (patient != null) {
+		res.render("new_patient.hbs", {
+			patient: patient
+		});
+	} else {
+		res.status(404).send();
+	}
+}
+
 
 module.exports.details = function(req, res) {
 	let patient = GetPatient(req.query.id);
@@ -156,5 +169,59 @@ module.exports.details = function(req, res) {
 		res.status(404).send();
 	}
 	//res.redirect("/");
-	res.render("patient.hbs");
+	//res.render("patient.hbs");
+}
+
+module.exports.delete = function(req, res) {
+    let id = req.query.id;
+    let patients = AllPatients();
+    let index = -1;
+
+    for(var i = 0; i < patients.length; i++) {
+        if(patients[i].id == id){
+            index = i;
+            break;
+        }
+    }
+
+    if(index > -1){
+        patients.splice(index, 1)[0];
+        RewritePatients(patients);
+
+        fs.remove('./files/' + id, err => {
+        	if (err) return console.error(err);
+        });
+
+        res.redirect("/");
+    } else {
+        res.status(404).send();
+    }
+}
+
+
+
+module.exports.filter = function(req, res) {
+	if(!req.body) return res.sendStatus(400);
+   let patients = AllPatients();
+   let status = req.body.pet_type;
+   let filtredPatients = [];
+
+   if (status == 'Все') {
+	filtredPatients = patients;
+   } else {
+	   if (status != 'Другое') {
+		filtredPatients = patients.filter(patient => patient.pet_type == status );
+	   } else {
+		filtredPatients = patients.filter(patient => status);
+	   }
+   }
+
+   console.log(status);
+  // console.log(filtredPatients);
+
+   res.render("Main_page.hbs", 
+   {
+	   tableVisible: filtredPatients.length > 0,
+	   patients: filtredPatients
+   });
 }

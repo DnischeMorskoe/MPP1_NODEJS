@@ -18,7 +18,7 @@
 </head>
 
 <body style="background-color: bisque !important;">
- <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"> <h3>Пациенты клиники</h3></nav>
+ <nav class="navbar navbar-expand-sm bg-warning navbar-warning mb-2"> <div class="container"> <h3>Пациенты клиники</h3></div></nav>
     <div class="container">
           
         <hr>
@@ -26,16 +26,17 @@
             <div class="input-group mb-2">
                 <select class="custom-select" name="pet_type" style="background-color: #fff3cd !important;">
                     <option value="Все">Все</option>
-                    <option value="Грызуны">Грызуны</option>
-                    <option value="Пернатые">Пернатые</option>
-                    <option value="Кошки">Кошки</option>
-                    <option value="Собаки">Собаки</option>
-                    <option value="Экзотические животные">Другое</option>
+                    <option value="Грызун">Грызуны</option>
+                    <option value="Пернатое">Пернатые</option>
+                    <option value="Кот">Кошки/коты</option>
+                    <option value="Собака">Собака</option>
+                    <option value="Другое">Другое</option>
                 </select>
 
-                <div class="input-group-append" style="padding-left: 5pc;">
+                <div class="input-group-append" style="padding-left: 1pc;">
                     <button class="btn btn-outline-dark" type="submit" formaction="/filter" >Найти</button>
-                    <button class="btn btn-warning" type="submit" formaction="/new">Добавить пациента</button>
+                     <button class="btn btn-warning" type="submit" formaction="/new">Добавить пациента</button>
+                   
                 </div>                
             </div>
         </form>
